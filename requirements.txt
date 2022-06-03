@@ -1,0 +1,23 @@
+# Flask libs
+uvicorn
+
+# Common libs
+loguru~=0.6.0
+requests~=2.27.1
+python-dotenv~=0.20.0
+dnspython==2.2.1
+supervisor==4.2.2
+jsonschema~=4.6.0
+pyopenssl==22.0.0
+Werkzeug==2.1.2
+# SQL libs
+orm-alchemy==0.1.14
+
+
+pandas~=1.4.1
+openpyxl==3.0.10
+
+
+SQLAlchemy~=1.4.37
+pydantic~=1.9.0
+starlette~=0.19.1
