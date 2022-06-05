@@ -4,11 +4,11 @@ from fastapi.encoders import jsonable_encoder
 from loguru import logger
 from werkzeug.exceptions import HTTPException
 
-from app.errors.exceptions import UrBoxException
+from app.errors.exceptions import CoreException
 
 
 def api_error_handler(error):
-    if isinstance(error, UrBoxException):
+    if isinstance(error, CoreException):
         logger.warning(f"HTTP_STATUS_CODE: {error.status_code.value} - {error.to_dict}")
         return jsonable_encoder(error.to_dict), error.status_code.value
 

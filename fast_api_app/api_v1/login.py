@@ -2,7 +2,7 @@ from datetime import timedelta
 from typing import Any
 from loguru import logger
 from fastapi import APIRouter, Request, Body
-from app.errors.exceptions import BadRequest, UrBoxException
+from app.errors.exceptions import BadRequest, CoreException
 import schemas
 from app.api.tasks import TasksService
 

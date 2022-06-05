@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from loguru import logger
 
 
-class UrBoxException(HTTPException):
+class CoreException(HTTPException):
     status_code = HTTPStatusCode.SERVER_ERROR_INTERNAL_SERVER_ERROR
     message = "Internal Server Error"
 
@@ -26,41 +26,41 @@ class UrBoxException(HTTPException):
         }
 
 
-class BadRequest(UrBoxException):
+class BadRequest(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_BAD_REQUEST.value
     message = "Bad Request"
 
 
-class NotFound(UrBoxException):
+class NotFound(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_NOT_FOUND.value
     message = "Not Found"
 
 
-class MethodNotAllowed(UrBoxException):
+class MethodNotAllowed(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_METHOD_NOT_ALLOWED.value
     message = "Method Not Allowed"
 
 
-class UnSupportedMediaType(UrBoxException):
+class UnSupportedMediaType(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_UNSUPPORTED_MEDIA_TYPE.value
     message = "Unsupported Media Type"
 
 
-class Unauthorized(UrBoxException):
+class Unauthorized(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_UNAUTHORIZED.value
     message = "Unauthorized"
 
 
-class RequestTimeOut(UrBoxException):
+class RequestTimeOut(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_REQUEST_TIME_OUT.value
     message = "Request Time Out"
 
 
-class Forbidden(UrBoxException):
+class Forbidden(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_FORBIDDEN.value
     message = "Forbidden"
 
 
-class ExceptionFailed(UrBoxException):
+class ExceptionFailed(CoreException):
     status_code = HTTPStatusCode.CLIENT_ERROR_EXPECTATION_FAILED.value
     message = "Exception Failed"
