@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fast-api:0.0.1
+    env_file: .env
+    restart: unless-stopped
+    tty: true
+    working_dir: /home/tuandc/code
+    ports:
+      - "8000:8000"
+    networks:
+      - app-networks
+    volumes:
+      - ~/Dropbox/py-practice/fast-api-sv/app:/home/tuandc/code/app
+      - ~/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/code/fast_api_app
+
+#    extra_hosts:
+#      - "urbox-hn-kafka-dev:10.130.216.219"
+
+networks:
+  app-networks:
+    driver: bridge
