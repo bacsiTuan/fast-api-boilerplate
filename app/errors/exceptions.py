@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from app.inum import HTTPStatusCode
 from fastapi import HTTPException
+from loguru import logger
 
 
 class UrBoxException(HTTPException):
@@ -11,6 +12,7 @@ class UrBoxException(HTTPException):
     def __init__(self, code=None, message=None):
         self.status_code = code or self.__class__.status_code
         self.detail = message or self.__class__.message
+        logger.exception(f"status: {self.status_code}, message: {self.detail}")
 
     @property
     def to_dict(self) -> dict:
@@ -22,7 +24,6 @@ class UrBoxException(HTTPException):
                 else self.status_code,
             }
         }
-
 
 
 class BadRequest(UrBoxException):
