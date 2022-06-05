@@ -1,5 +1,6 @@
-# Flask libs
+# fastapi libs
 uvicorn
+fastapi
 
 # Common libs
 loguru~=0.6.0
