@@ -4,6 +4,10 @@ from typing import Any, Dict, List, Optional, Union
 import os
 import urllib.parse
 from pydantic import AnyHttpUrl, BaseSettings, HttpUrl, validator
+from loguru import logger
+from dotenv import load_dotenv
+
+load_dotenv(override=False)
 
 
 class Settings(BaseSettings):
