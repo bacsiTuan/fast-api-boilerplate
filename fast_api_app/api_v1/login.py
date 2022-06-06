@@ -9,7 +9,7 @@ from app.api.tasks import TasksService
 router = APIRouter()
 
 
-@router.post("/login/access-token", status_code=201)
+@router.get("/login/access-token", status_code=201)
 def login_access_token() -> Any:
     # raise BadRequest(message="sai")
     # raise HTTPException(status_code=400, detail="1")
