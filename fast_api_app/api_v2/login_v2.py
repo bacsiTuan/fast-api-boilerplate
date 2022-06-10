@@ -13,7 +13,7 @@ router = APIRouter()
 def login_access_token() -> Any:
     # raise BadRequest(message="sai")
     # raise HTTPException(status_code=400, detail="1")
-    return {"ping": "pong1"}
+    return {"ping": "login v2"}
 
 
 @router.post("/tasks", status_code=201)

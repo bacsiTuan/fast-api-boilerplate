@@ -1,11 +1,12 @@
-from fast_api_app.api_v1 import app, api_router
 from loguru import logger
 from app.config import settings
 from app.extensions import db
 from starlette.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
 
 def create_app():
+    app = FastAPI(title="FastAPI", openapi_url=f"{settings.API_V1_STR}/openapi.json")
     __config_cors_middleware(app)
     __config_logging(app)
     __register_api_router(app)
@@ -19,7 +20,11 @@ def __config_logging(app) -> None:
 
 
 def __register_api_router(app) -> None:
+    from fast_api_app.api_v1 import api_router
+    from fast_api_app.api_v2 import api_router_v2
+
     app.include_router(api_router, prefix=settings.API_V1_STR)
+    app.include_router(api_router_v2, prefix=settings.API_V2_STR)
 
 
 def __init_app(app) -> None:
