@@ -4,6 +4,7 @@ from app.config import settings
 from app.extensions import db
 from starlette.middleware.cors import CORSMiddleware
 
+
 def create_app():
     __config_cors_middleware(app)
     __config_logging(app)
@@ -14,14 +15,16 @@ def create_app():
 
 
 def __config_logging(app) -> None:
-    logger.info('Start fast api... 🚀🚀')
+    logger.info("Start fast api... 🚀🚀")
 
 
 def __register_api_router(app) -> None:
     app.include_router(api_router, prefix=settings.API_V1_STR)
 
+
 def __init_app(app) -> None:
     db.init_app(app)
+
 
 def __config_cors_middleware(app) -> None:
     # Set all CORS enabled origins

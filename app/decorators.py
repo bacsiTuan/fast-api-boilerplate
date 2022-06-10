@@ -110,4 +110,3 @@ def sqlalchemy_session(db):
         return resource_verb
 
     return decorated
-

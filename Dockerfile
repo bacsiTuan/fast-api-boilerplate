@@ -16,7 +16,7 @@ WORKDIR /home/tuandc/code
 
 COPY . .
 COPY entry-point.sh .
-#COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 #RUN echo "*/15 * * * * root cd /home/tuandc/code && ./cron.sh > /proc/1/fd/1 2>&1" >> /etc/crontab && sed -i -e 's/\r$//' entry-point.sh && chmod +x entry-point.sh && ls -la && sed -i -e 's/\r$//' cron.sh && chmod +x cron.sh
 

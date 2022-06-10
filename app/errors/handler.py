@@ -14,9 +14,14 @@ def api_error_handler(error):
 
     if isinstance(error, HTTPException):
         return (
-            jsonable_encoder({"error": {"code": error.code, "message": error.description}}),
+            jsonable_encoder(
+                {"error": {"code": error.code, "message": error.description}}
+            ),
             error.code,
         )
 
     logger.exception(error)
-    return jsonable_encoder({"error": {"code": 500, "message": "Internal Server Error"}}), 500
+    return (
+        jsonable_encoder({"error": {"code": 500, "message": "Internal Server Error"}}),
+        500,
+    )

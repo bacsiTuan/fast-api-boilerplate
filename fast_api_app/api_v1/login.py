@@ -13,9 +13,7 @@ router = APIRouter()
 def login_access_token() -> Any:
     # raise BadRequest(message="sai")
     # raise HTTPException(status_code=400, detail="1")
-    return {
-        "ping": "pong"
-    }
+    return {"ping": "pong"}
 
 
 @router.post("/tasks", status_code=201)
@@ -23,9 +21,6 @@ def create_task(payload: dict = Body(...)):
     logger.info(payload)
     try:
         tasks = TasksService.create_task(**payload)
-        return {
-                   "success": True,
-                   "data": tasks
-               }
+        return {"success": True, "data": tasks}
     except Exception as e:
         logger.error(e)
