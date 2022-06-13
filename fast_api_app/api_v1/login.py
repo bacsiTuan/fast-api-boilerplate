@@ -24,3 +24,12 @@ def create_task(payload: dict = Body(...)):
         return {"success": True, "data": tasks}
     except Exception as e:
         logger.error(e)
+
+
+@router.post("/add_mongo", status_code=201)
+def create_mongo():
+    try:
+        tasks = TasksService.add_mongo()
+        return {"success": True, "data": tasks}
+    except Exception as e:
+        logger.error(e)

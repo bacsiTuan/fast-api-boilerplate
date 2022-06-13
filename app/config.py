@@ -49,7 +49,37 @@ class ConfigMysql(object):
     DATABASE_URL = f"{DB_TYPE}+{DB_CONNECTOR}://{urllib.parse.quote(str(DB_USERNAME))}:{urllib.parse.quote(str(DB_PASSWORD))}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
-class Config(ConfigMysql):
+class ConfigMongoDB(object):
+    MONGODB_HOST = os.environ.get("DB_MONGO_HOST") or "<your mongodb host>"
+    MONGODB_PORT = int(os.environ.get("DB_MONGO_PORT") or "27017")
+    MONGODB_DB = os.environ.get("DB_MONGO_DATABASE") or "<your mongodb database>"
+    MONGODB_USERNAME = os.environ.get('DB_MONGO_USERNAME') or None
+    MONGODB_PASSWORD = os.environ.get('DB_MONGO_PASSWORD') or None
+    MONGODB_REPLICASET = os.environ.get('DB_MONGODB_REPLICASET') or None  # 'rs0'
+    MONGODB_READ_PREFERENCE = os.environ.get('MONGODB_READ_PREFERENCE') or None
+    MONGODB_RETRY_WRITES = os.environ.get("DB_MONGO_RETRY_WRITES") or 'false'
+    IS_MONGO_SRV = os.environ.get("DB_MONGO_SRV") or "NO"
+
+    MONGODB_URL = f'mongodb://'
+    if IS_MONGO_SRV == "YES":
+        MONGODB_URL = f'mongodb+srv://'
+    if MONGODB_USERNAME is not None and MONGODB_PASSWORD is not None and IS_MONGO_SRV == "NO":
+        MONGODB_URL = f'{MONGODB_URL}{urllib.parse.quote(MONGODB_USERNAME)}:{urllib.parse.quote(MONGODB_PASSWORD)}@{MONGODB_HOST}:{MONGODB_PORT}/'
+    elif MONGODB_USERNAME is not None and MONGODB_PASSWORD is not None and IS_MONGO_SRV == "YES":
+        MONGODB_URL = f'{MONGODB_URL}{urllib.parse.quote(MONGODB_USERNAME)}:{urllib.parse.quote(MONGODB_PASSWORD)}@{MONGODB_HOST}/'
+    else:
+        MONGODB_URL = f'{MONGODB_URL}{MONGODB_HOST}:{MONGODB_PORT}/'
+
+    if MONGODB_DB is not None:
+        MONGODB_URL = f'{MONGODB_URL}{MONGODB_DB}'
+    MONGODB_URL = f'{MONGODB_URL}?retryWrites={MONGODB_RETRY_WRITES}'
+    if MONGODB_READ_PREFERENCE is not None:
+        MONGODB_URL = f'{MONGODB_URL}&readPreference={MONGODB_READ_PREFERENCE}'
+    if MONGODB_REPLICASET is not None:
+        MONGODB_URL = f'{MONGODB_URL}&replicaSet={MONGODB_REPLICASET}'
+
+
+class Config(ConfigMysql, ConfigMongoDB):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "<your secret key>"
 
 

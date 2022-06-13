@@ -14,3 +14,12 @@ class TasksService(object):
     def create_task(cls, **kwargs):
         task = tasks_repo.create(**kwargs)
         return task.json
+
+    @classmethod
+    def add_mongo(cls):
+        booking_log = m.MBookingLog(
+            booking_id=1111,
+            store_id=12,
+        )
+        booking_log.save()
+        return True
