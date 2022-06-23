@@ -10,7 +10,7 @@ class MBookingLog(mongoengine.Document):
     is_confirm = mongoengine.IntField(required=False, default=1)
     is_sent_confirm = mongoengine.IntField(required=False, default=1)
     is_sent_result = mongoengine.IntField(required=False, default=1)
-    check_code = mongoengine.ListField(required=False)
+    check_code = mongoengine.StringField(required=False)
     active_code = mongoengine.ListField(required=False)
     hold_code = mongoengine.ListField(required=False)
     unhold_code = mongoengine.ListField(required=False)

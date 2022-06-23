@@ -20,6 +20,7 @@ class TasksService(object):
         booking_log = m.MBookingLog(
             booking_id=1111,
             store_id=12,
+            check_code="abc"
         )
         booking_log.save()
         return True
