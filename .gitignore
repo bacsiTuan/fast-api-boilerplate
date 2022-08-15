@@ -39,3 +39,4 @@ messages.pot
 .idea
 
 .gitlab-ci.yml
+.DS_Store
