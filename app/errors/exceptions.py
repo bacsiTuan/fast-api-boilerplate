@@ -11,7 +11,10 @@ class CoreException(HTTPException):
 
     def __init__(self, code=None, message=None):
         self.status_code = code or self.__class__.status_code
-        self.detail = message or self.__class__.message
+        self.detail = {
+            "status_code": code or self.__class__.status_code,
+            "message": message or self.__class__.message
+        }
         logger.exception(f"status: {self.status_code}, message: {self.detail}")
 
     @property
