@@ -31,5 +31,6 @@ sentry-sdk ~= 1.5.12
 pymongo==3.11.3
 mongoengine == 0.23.1
 
-
+# redis lib
+redis~=4.3.4
 

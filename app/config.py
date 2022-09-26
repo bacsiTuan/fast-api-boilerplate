@@ -49,6 +49,13 @@ class ConfigMysql(object):
     DATABASE_URL = f"{DB_TYPE}+{DB_CONNECTOR}://{urllib.parse.quote(str(DB_USERNAME))}:{urllib.parse.quote(str(DB_PASSWORD))}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 
+class ConfigRedis(object):
+    REDIS_HOST = os.environ.get("REDIS_HOST") or "localhost"
+    REDIS_PORT = os.environ.get("REDIS_PORT") or "6379"
+    REDIS_DB = os.environ.get("REDIS_DB") or "6"
+    REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD") or ""
+
+
 class ConfigMongoDB(object):
     MONGODB_HOST = os.environ.get("DB_MONGO_HOST") or "<your mongodb host>"
     MONGODB_PORT = int(os.environ.get("DB_MONGO_PORT") or "27017")
@@ -79,8 +86,9 @@ class ConfigMongoDB(object):
         MONGODB_URL = f'{MONGODB_URL}&replicaSet={MONGODB_REPLICASET}'
 
 
-class Config(ConfigMysql, ConfigMongoDB):
+class Config(ConfigMysql, ConfigMongoDB, ConfigRedis):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "<your secret key>"
+    REDIS = ConfigRedis()
 
 
 class TestingConfig(Config):
