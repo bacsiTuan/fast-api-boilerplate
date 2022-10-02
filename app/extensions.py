@@ -7,9 +7,18 @@ import sentry_sdk
 from sentry_sdk.integrations.logging import LoggingIntegration
 import logging
 import mongoengine
+import redis
 
 db = ActiveAlchemy(config_app.DATABASE_URL, echo=config_app.SQLALCHEMY_ECHO)
 db_mongo = mongoengine.connect(host=config_app.MONGODB_URL)
+
+redis_client = redis.Redis(
+    host=config_app.REDIS.REDIS_HOST,
+    port=int(config_app.REDIS.REDIS_PORT),
+    password=config_app.REDIS.REDIS_PASSWORD,
+    # db=int(config_app.REDIS.REDIS_DB),
+    decode_responses=True,
+)
 
 # set up sentry
 sentry_logging = LoggingIntegration(
