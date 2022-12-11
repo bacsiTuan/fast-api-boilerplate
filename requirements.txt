@@ -1,41 +1,41 @@
 # fastapi libs
 uvicorn
 fastapi
-pydantic~=1.9.0
-starlette~=0.19.1
+pydantic==1.10.2
+starlette==0.23.1
 
 # Common libs
 loguru~=0.6.0
-requests~=2.27.1
-python-dotenv~=0.20.0
+requests==2.28.1
+python-dotenv==0.21.0
 dnspython==2.2.1
-supervisor==4.2.2
-jsonschema~=4.6.0
-pyopenssl==22.0.0
-Werkzeug==2.1.2
+supervisor==4.2.4
+jsonschema==4.17.3
+pyopenssl==22.1.0
+Werkzeug==2.2.2
 # SQL libs
 orm-alchemy==0.1.14
 SQLAlchemy~=1.4.37
 
 # math libs
-pandas~=1.4.1
+pandas==1.5.2
 openpyxl==3.0.10
 
 # Check os
 psutil ~= 5.9.0
 
 # Monitoring Libs
-sentry-sdk ~= 1.5.12
+sentry-sdk==1.11.1
 
 # mongodb
-pymongo==3.11.3
-mongoengine == 0.23.1
+pymongo==4.3.3
+mongoengine==0.24.2
 
 # redis lib
-redis~=4.3.4
+redis==4.4.0
 protobuf
-grpcio-tools~=1.38.0
-grpcio==1.38.0
+grpcio-tools==1.51.1
+grpcio==1.51.1
 
 git+https://github.com/HKer-MuCoi/py_header_lib.git@0.0.1.5
 
