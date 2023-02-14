@@ -15,14 +15,12 @@ pyopenssl~=23.0.0
 Werkzeug==2.2.2
 # SQL libs
 orm-alchemy==0.1.14
-SQLAlchemy~=2.0.3
+SQLAlchemy~=1.4.46
 
 # math libs
 pandas~=1.5.3
 openpyxl~=3.1.1
 
-# Check os
-psutil ~= 5.9.0
 
 # Monitoring Libs
 sentry-sdk~=1.15.0
@@ -33,11 +31,13 @@ mongoengine==0.26.0
 
 # redis lib
 redis~=4.5.1
-protobuf
-grpcio-tools~=1.51.1
-grpcio~=1.51.1
+protobuf~=3.20.3
+# grpcio-tools~=1.51.1
+# grpcio~=1.51.1
+grpcio-tools~=1.40.0
+grpcio==1.41.1
 
-# git+https://github.com/bacsiTuan/py_header_lib.git@0.0.1.5
+git+https://github.com/bacsiTuan/py_header_lib.git@0.0.1.5
 
 
 
