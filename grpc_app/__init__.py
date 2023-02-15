@@ -5,7 +5,7 @@ from py_header_lib.grpc_services.common.proto import ping_pb2_grpc
 from grpc_app.api import APIPing  # noqa
 
 
-def create_app(address="0.0.0.0", port=6001):
+def create_grpc_app(address="0.0.0.0", port=6001):
     server = GRPCServer(address, port)
     add_services(server.instance)
     return server

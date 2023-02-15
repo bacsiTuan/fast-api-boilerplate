@@ -19,6 +19,8 @@ services:
 #      - ~/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/fast_api_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/app:/home/tuandc/app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/fast_api_app
+      - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/grpc_app:/home/tuandc/grpc_app
+      - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/schemas:/home/tuandc/schemas
 
 #    extra_hosts:
 #      - "urbox-hn-kafka-dev:10.130.216.219"

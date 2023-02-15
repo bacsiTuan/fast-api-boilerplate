@@ -32,10 +32,10 @@ class GRPCServer(object):
         return self.__server
 
     def serve(self):
-        endpoint = f"[::]:{str(self.__port)}"
+        endpoint = f"{self.__address}:{self.__port}"
 
         logger.info(f"Started GRPC Server at {endpoint}")
-        logger.info("Serving...")
+        logger.info("Serving GRPC... 🌋 🌋 🌋")
 
         self.__server.add_insecure_port(endpoint)
         self.__server.start()
