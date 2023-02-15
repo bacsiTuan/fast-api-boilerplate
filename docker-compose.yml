@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
@@ -22,9 +22,26 @@ services:
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/grpc_app:/home/tuandc/grpc_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/schemas:/home/tuandc/schemas
 
-#    extra_hosts:
-#      - "urbox-hn-kafka-dev:10.130.216.219"
+  db:
+    image: mysql:latest
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      # - MYSQL_DATABASE=quotes
+      - MYSQL_ROOT_PASSWORD=boyhandsome
+    ports:
+      - '3307:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - app-networks
 
 networks:
   app-networks:
-    driver: bridge
+    name: app-networks
+
+volumes:
+  db:
+    driver: local
