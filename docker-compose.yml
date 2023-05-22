@@ -38,6 +38,19 @@ services:
     networks:
       - app-networks
 
+  pgdb:
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pgdb:/var/lib/postgresql/data
+    networks:
+      - app-networks
+
 networks:
   app-networks:
     name: app-networks
@@ -45,4 +58,6 @@ networks:
 
 volumes:
   db:
+    driver: local
+  pgdb:
     driver: local

@@ -39,13 +39,24 @@ class Settings(BaseSettings):
 
 class ConfigMysql(object):
     SQLALCHEMY_ECHO = False
-    DB_TYPE = os.environ.get("DB_MYSQL_TYPE") or "mysql"
-    DB_CONNECTOR = os.environ.get("DB_MYSQL_CONNECTOR") or "pymysql"
-    DB_USERNAME = os.environ.get("DB_MYSQL_USER")
-    DB_PASSWORD = os.environ.get("DB_MYSQL_PASS")
-    DB_HOST = os.environ.get("DB_MYSQL_HOST")
-    DB_PORT = os.environ.get("DB_MYSQL_PORT")
-    DB_NAME = os.environ.get("DB_MYSQL_DBNAME")
+    # config mysql
+    # DB_TYPE = os.environ.get("DB_MYSQL_TYPE") or "mysql"
+    # DB_CONNECTOR = os.environ.get("DB_MYSQL_CONNECTOR") or "pymysql"
+    # DB_USERNAME = os.environ.get("DB_MYSQL_USER")
+    # DB_PASSWORD = os.environ.get("DB_MYSQL_PASS")
+    # DB_HOST = os.environ.get("DB_MYSQL_HOST")
+    # DB_PORT = os.environ.get("DB_MYSQL_PORT")
+    # DB_NAME = os.environ.get("DB_MYSQL_DBNAME")
+
+    # config postgres
+    DB_TYPE = os.environ.get("DB_PG_TYPE") or "postgresql"
+    DB_CONNECTOR = os.environ.get("DB_PG_CONNECTOR") or "psycopg2"
+    DB_USERNAME = os.environ.get("DB_PG_USER")
+    DB_PASSWORD = os.environ.get("DB_PG_PASS")
+    DB_HOST = os.environ.get("DB_PG_HOST")
+    DB_PORT = os.environ.get("DB_PG_PORT")
+    DB_NAME = os.environ.get("DB_PG_DBNAME")
+
     DATABASE_URL = f"{DB_TYPE}+{DB_CONNECTOR}://{urllib.parse.quote(str(DB_USERNAME))}:{urllib.parse.quote(str(DB_PASSWORD))}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 

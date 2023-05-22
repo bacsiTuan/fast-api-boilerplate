@@ -40,3 +40,5 @@ messages.pot
 
 .gitlab-ci.yml
 .DS_Store
+pgdb
+db

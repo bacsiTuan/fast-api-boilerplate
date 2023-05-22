@@ -36,6 +36,7 @@ protobuf~=3.20.3
 # grpcio~=1.51.1
 grpcio-tools~=1.40.0
 grpcio==1.41.1
+psycopg2-binary==2.9.6
 
 git+https://github.com/bacsiTuan/py_header_lib.git@0.0.1.5
 
