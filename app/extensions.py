@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from orm_alchemy import ActiveAlchemy
-from app.config import config_app
+from app.config import config_app, ConfigKafka
 import os
 import sentry_sdk
 from sentry_sdk.integrations.logging import LoggingIntegration
 import logging
 import mongoengine
 import redis
+from kafka_app import KafkaType, KafkaFactory
 
 db = ActiveAlchemy(config_app.DATABASE_URL, echo=config_app.SQLALCHEMY_ECHO)
 db_mongo = mongoengine.connect(host=config_app.MONGODB_URL)
@@ -18,6 +19,11 @@ redis_client = redis.Redis(
     password=config_app.REDIS.REDIS_PASSWORD,
     # db=int(config_app.REDIS.REDIS_DB),
     decode_responses=True,
+)
+
+# Set up a Kafka producer.
+kafka_producer = KafkaFactory.create(
+    KafkaType.PRODUCER, ConfigKafka.KAFKA_URL, config_app
 )
 
 # set up sentry

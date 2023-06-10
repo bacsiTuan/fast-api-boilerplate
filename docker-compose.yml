@@ -15,8 +15,6 @@ services:
     networks:
       - app-networks
     volumes:
-#      - ~/Dropbox/py-practice/fast-api-sv/app:/home/tuandc/app
-#      - ~/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/fast_api_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/app:/home/tuandc/app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/fast_api_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/grpc_app:/home/tuandc/grpc_app
@@ -51,6 +49,36 @@ services:
     networks:
       - app-networks
 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.2.1
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_SERVERS: zookeeper:2888:3888
+    networks:
+      - app-networks
+
+  kafka:
+    image: confluentinc/cp-kafka:7.2.1
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - app-networks
+    depends_on:
+      - zookeeper
+    command: sh -c "((sleep 15 && kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic RULE-MANAGEMENT.RULE-TRACKING-MASTER-SERVICE.SYMBOL-RULE-JOB.LOCAL)&) && /etc/confluent/docker/run "
+
+
 networks:
   app-networks:
     name: app-networks
@@ -60,4 +88,8 @@ volumes:
   db:
     driver: local
   pgdb:
+    driver: local
+  zookeeper:
+    driver: local
+  kafka:
     driver: local

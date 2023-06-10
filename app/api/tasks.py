@@ -4,8 +4,9 @@ from loguru import logger
 
 from app.decorators import sqlalchemy_session
 from app import models as m
-from app.extensions import db
+from app.extensions import db, kafka_producer
 from app.repositories.tasks import tasks_repo
+from app.config import ConfigKafka
 
 
 class TasksService(object):
@@ -13,6 +14,16 @@ class TasksService(object):
     @sqlalchemy_session(db)
     def create_task(cls, **kwargs):
         task = tasks_repo.create(**kwargs)
+        publish = kafka_producer.push(
+            ConfigKafka.TOPIC,
+            {
+                "type": "AUTO_OFF_VOUCHER_DETAIL",
+                "payload": {
+                    "voucher_detail_id": 1,
+                },
+            },
+        )
+        logger.info(publish)
         return task.json
 
     @classmethod

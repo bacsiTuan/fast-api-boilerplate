@@ -1,34 +1,34 @@
 # fastapi libs
 uvicorn
-fastapi~=0.92.0
-pydantic~=1.10.4
-starlette~=0.25.0
+fastapi~=0.96.0
+pydantic~=1.10.9
+starlette~=0.27.0
 
 # Common libs
-loguru~=0.6.0
-requests~=2.28.2
-python-dotenv~=0.21.1
+loguru~=0.7.0
+requests~=2.31.0
+python-dotenv~=1.0.0
 dnspython==2.3.0
 supervisor~=4.2.5
 jsonschema==4.17.3
-pyopenssl~=23.0.0
-Werkzeug==2.2.2
+pyopenssl~=23.2.0
+Werkzeug~=2.3.6
 # SQL libs
 orm-alchemy==0.1.14
 SQLAlchemy~=1.4.46
 psycopg2-binary==2.9.6
 
 # math libs
-pandas~=1.5.3
+pandas~=2.0.2
 openpyxl~=3.1.1
 
 
 # Monitoring Libs
-sentry-sdk~=1.15.0
+sentry-sdk~=1.25.1
 
 # mongodb
-pymongo==4.3.3
-mongoengine==0.26.0
+pymongo~=4.3.3
+mongoengine~=0.27.0
 
 # redis lib
 redis~=4.5.1
@@ -38,6 +38,8 @@ protobuf~=3.20.3
 grpcio-tools~=1.40.0
 grpcio==1.41.1
 
+# Kafka libs
+kafka-python~=2.0.2
 
 git+https://github.com/bacsiTuan/py_header_lib.git@0.0.1.5
 

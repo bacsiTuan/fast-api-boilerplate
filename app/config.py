@@ -67,6 +67,14 @@ class ConfigRedis(object):
     REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD") or ""
 
 
+class ConfigKafka(object):
+    PREFIX = (os.environ.get("APP_CONFIG") or "UNKNOWN").upper()
+    KAFKA_URL = os.environ.get("KAFKA_URL") or "ip-30-0-149-205"
+    KAFKA_GROUP = f"{PREFIX}_GROUP_FASTAPI"
+    TOPIC = f"{PREFIX}_TOPIC_FASTAPI"
+    INSTANCE_TOPICS = [TOPIC]
+
+
 class ConfigMongoDB(object):
     MONGODB_HOST = os.environ.get("DB_MONGO_HOST") or "<your mongodb host>"
     MONGODB_PORT = int(os.environ.get("DB_MONGO_PORT") or "27017")
@@ -97,7 +105,7 @@ class ConfigMongoDB(object):
         MONGODB_URL = f'{MONGODB_URL}&replicaSet={MONGODB_REPLICASET}'
 
 
-class Config(ConfigMysql, ConfigMongoDB, ConfigRedis):
+class Config(ConfigMysql, ConfigMongoDB, ConfigRedis, ConfigKafka):
     SECRET_KEY = os.environ.get("SECRET_KEY") or "<your secret key>"
     REDIS = ConfigRedis()
 
