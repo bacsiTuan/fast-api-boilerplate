@@ -19,6 +19,7 @@ services:
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/fast_api_app:/home/tuandc/fast_api_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/grpc_app:/home/tuandc/grpc_app
       - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/schemas:/home/tuandc/schemas
+      - /Users/tuan.dc/Dropbox/py-practice/fast-api-sv/kafka_app:/home/tuandc/kafka_app
 
   db:
     image: mysql:latest
