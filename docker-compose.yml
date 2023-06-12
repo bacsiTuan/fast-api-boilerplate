@@ -83,6 +83,33 @@ services:
       - zookeeper
     command: sh -c "((sleep 15 && kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic DEVELOP_TOPIC_FASTAPI)&) && /etc/confluent/docker/run "
 
+  redis:
+    hostname: redis
+    image: redis:7.0.11
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    networks:
+      - app-networks
+
+  mongodb:
+    image: mongo:6.0.6-jammy
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=develop
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+    volumes:
+      - db:/var/lib/mongodb
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
+    networks:
+      - app-networks
 
 networks:
   app-networks:
@@ -97,4 +124,8 @@ volumes:
   zookeeper:
     driver: local
   kafka:
+    driver: local
+  redis:
+    driver: local
+  mongodb:
     driver: local

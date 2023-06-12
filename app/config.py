@@ -61,7 +61,7 @@ class ConfigMysql(object):
 
 
 class ConfigRedis(object):
-    REDIS_HOST = os.environ.get("REDIS_HOST") or "localhost"
+    REDIS_HOST = os.environ.get("REDIS_HOST") or "redis"
     REDIS_PORT = os.environ.get("REDIS_PORT") or "6379"
     REDIS_DB = os.environ.get("REDIS_DB") or "6"
     REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD") or ""
