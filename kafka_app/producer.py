@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import marshal
+import json
 import socket
 
 from kafka import KafkaAdminClient  # noqa
@@ -31,7 +31,7 @@ class KafkaProducer(KafkaBase):
                 client_id=socket.gethostname(),
                 request_timeout_ms=2000,
                 api_version=(2, 3, 0),
-                value_serializer=lambda v: marshal.dumps(v),
+                value_serializer=lambda v: json.dumps(v).encode("utf-8"),
             )
 
             producer.send(topic, message).add_callback(on_success).add_errback(on_error)

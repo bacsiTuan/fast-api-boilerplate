@@ -73,11 +73,15 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_BROKER_ID: 1
     networks:
       - app-networks
     depends_on:
       - zookeeper
-    command: sh -c "((sleep 15 && kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic RULE-MANAGEMENT.RULE-TRACKING-MASTER-SERVICE.SYMBOL-RULE-JOB.LOCAL)&) && /etc/confluent/docker/run "
+    command: sh -c "((sleep 15 && kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic DEVELOP_TOPIC_FASTAPI)&) && /etc/confluent/docker/run "
 
 
 networks:

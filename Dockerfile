@@ -46,7 +46,5 @@ RUN chmod +x entry-point.sh
 
 
 EXPOSE 8000
-#EXPOSE 8080
-#EXPOSE 50001
 
 ENTRYPOINT ["./entry-point.sh"]

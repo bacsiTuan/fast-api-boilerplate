@@ -17,9 +17,9 @@ class TasksService(object):
         publish = kafka_producer.push(
             ConfigKafka.TOPIC,
             {
-                "type": "AUTO_OFF_VOUCHER_DETAIL",
+                "type": "ADD_MONGO",
                 "payload": {
-                    "voucher_detail_id": 1,
+                    "voucher_detail_id": 2,
                 },
             },
         )
@@ -27,7 +27,8 @@ class TasksService(object):
         return task.json
 
     @classmethod
-    def add_mongo(cls):
+    def add_mongo(cls, request=None):
+        logger.info(request)
         booking_log = m.MBookingLog(
             booking_id=1111,
             store_id=12,

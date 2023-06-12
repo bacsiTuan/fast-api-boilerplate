@@ -69,7 +69,7 @@ class ConfigRedis(object):
 
 class ConfigKafka(object):
     PREFIX = (os.environ.get("APP_CONFIG") or "UNKNOWN").upper()
-    KAFKA_URL = os.environ.get("KAFKA_URL") or "ip-30-0-149-205"
+    KAFKA_URL = os.environ.get("KAFKA_URL") or "kafka:9092"
     KAFKA_GROUP = f"{PREFIX}_GROUP_FASTAPI"
     TOPIC = f"{PREFIX}_TOPIC_FASTAPI"
     INSTANCE_TOPICS = [TOPIC]

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import marshal
+import json
 
 from kafka import KafkaAdminClient, TopicPartition, OffsetAndMetadata  # noqa
 from kafka import KafkaConsumer as KafkaConsumerCore  # noqa
@@ -16,7 +16,7 @@ class KafkaConsumer(KafkaBase):
             bootstrap_servers=self.bootstrap_servers,
             auto_offset_reset="earliest",
             enable_auto_commit=False,
-            value_deserializer=lambda v: marshal.loads(v),
+            value_deserializer=lambda v: json.loads(v),
             api_version=(2, 3, 0),
             group_id=f"{group}",
         )
@@ -24,6 +24,7 @@ class KafkaConsumer(KafkaBase):
         consumer.subscribe(self.instance_topics)
 
         for message in consumer:
+            logger.info(f"Received message: {message}")
             if message is None:
                 continue
 
